@@ -2,7 +2,7 @@ from typing import List
 class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
         stack, third = [], float('-inf')
-        print(reversed(nums))
+        #역방향으로 리스트 돌기
         for num in reversed(nums):
             if num < third:
                 return True
