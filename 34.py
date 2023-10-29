@@ -1,27 +1,18 @@
+import bisect
 from typing import List
+from bisect import bisect_left, bisect_right
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        left = 0
-        right = len(nums)-1
-        if nums == []:
+        left = bisect.bisect_left(nums, target)
+        right = bisect.bisect_right(nums, target) - 1
+        print(left)
+        print(right)
+        if left <= right:
+            return [left, right]
+        else:
             return [-1, -1]
-        while True:
-            mid = (left + right) // 2
-            if nums[mid] == target:
-                break
-            if nums[mid] < target:
-                left = mid + 1
-            if left > right:
-                return [-1, -1]
-            elif nums[mid] > target:
-                right = mid - 1
-        while nums[left] != target:
-            left += 1
-        while nums[right] != target:
-            right -= 1
-        return [left, right]
 sol = Solution()
-nums = [5, 7, 7, 8, 8, 10]
-target = 8
+nums = []
+target = 0
 result = sol.searchRange(nums, target)
 print(result)
